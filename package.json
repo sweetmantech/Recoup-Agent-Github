@@ -5,19 +5,21 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --loader ts-node/esm src/test.ts",
-    "start": "node --loader ts-node/esm src/index.ts"
+    "test": "NODE_OPTIONS='--loader ts-node/esm' node src/test.ts",
+    "start": "NODE_OPTIONS='--loader ts-node/esm' node src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@octokit/rest": "^20.0.2",
+    "@octokit/plugin-rest-endpoint-methods": "^13.2.6",
+    "@octokit/rest": "^20.1.1",
     "dotenv": "^16.4.1",
+    "openai": "^4.76.0",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@types/node": "^20.11.16",
+    "@types/node": "^20.17.9",
     "ts-node": "^10.9.2"
   }
 }
