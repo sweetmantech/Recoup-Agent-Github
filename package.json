@@ -1,19 +1,23 @@
 {
   "name": "github-agent",
   "version": "1.0.0",
-  "description": "",
+  "description": "Github Agent for monitoring PRs and creating tokens",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --loader ts-node/esm src/test.ts",
+    "start": "node --loader ts-node/esm src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@octokit/rest": "^21.0.2",
-    "@types/node": "^22.10.1",
-    "dotenv": "^16.4.7",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.7.2"
+    "@octokit/rest": "^20.0.2",
+    "dotenv": "^16.4.1",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "ts-node": "^10.9.2"
   }
 }

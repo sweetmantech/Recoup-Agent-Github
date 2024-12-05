@@ -1,59 +1,11 @@
 import { Octokit } from "@octokit/rest";
-import dotenv from "dotenv";
+import { RestEndpointMethodTypes } from "@octokit/plugin-rest-endpoint-methods";
+import * as dotenv from "dotenv";
 
 dotenv.config();
 
-interface User {
-  login: string;
-  id: number;
-  node_id: string;
-  avatar_url: string;
-  html_url: string;
-}
-
-interface Label {
-  id: number;
-  node_id: string;
-  name: string;
-  color: string;
-  description: string;
-}
-
-interface Milestone {
-  id: number;
-  node_id: string;
-  title: string;
-  description: string;
-  state: string;
-}
-
-type PullRequest = {
-  url: string;
-  id: number;
-  node_id: string;
-  html_url: string;
-  diff_url: string;
-  patch_url: string;
-  issue_url: string;
-  commits_url: string;
-  review_comments_url: string;
-  review_comment_url: string;
-  comments_url: string;
-  statuses_url: string;
-  number: number;
-  state: string;
-  locked: boolean;
-  title: string;
-  user: User;
-  body: string | null;
-  labels: Label[];
-  milestone: Milestone | null;
-  merged_at: string | null;
-  created_at: string;
-  updated_at: string;
-  closed_at: string | null;
-  draft: boolean | undefined;
-};
+type PullRequestResponse =
+  RestEndpointMethodTypes["pulls"]["list"]["response"]["data"][0];
 
 export class GithubService {
   private octokit: Octokit;
@@ -67,7 +19,7 @@ export class GithubService {
   async getMergedPullRequests(
     owner: string,
     repo: string
-  ): Promise<PullRequest[]> {
+  ): Promise<PullRequestResponse[]> {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
 
@@ -80,8 +32,7 @@ export class GithubService {
     });
 
     return data.filter(
-      (pr): pr is PullRequest =>
-        pr.merged_at !== null && new Date(pr.merged_at) > yesterday
+      (pr) => pr.merged_at !== null && new Date(pr.merged_at) > yesterday
     );
   }
 }
