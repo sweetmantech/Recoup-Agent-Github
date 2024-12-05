@@ -33,9 +33,9 @@ export class OpenAIService {
     Format the response in a clear, tweet-friendly way.`;
 
     const response = await this.openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-4o-mini",
       messages: [{ role: "user", content: prompt }],
-      max_tokens: 150,
+      max_tokens: 1111,
       temperature: 0.7,
     });
 

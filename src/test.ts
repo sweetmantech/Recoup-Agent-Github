@@ -44,6 +44,9 @@ async function testGithubAndOpenAI() {
     }
   } catch (error) {
     console.error("Error during testing:", error);
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+    }
   }
 }
 

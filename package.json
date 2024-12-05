@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --loader ts-node/esm src/test.ts",
-    "start": "node --loader ts-node/esm src/index.ts"
+    "test": "NODE_OPTIONS='--loader ts-node/esm' node src/test.ts",
+    "start": "NODE_OPTIONS='--loader ts-node/esm' node src/index.ts"
   },
   "keywords": [],
   "author": "",

@@ -18,6 +18,7 @@ The Github Agent is a tool that allows you to interact with Github repositories.
    - Create service for OpenAI interactions
    - Implement PR summary generation function
    - Implement tweet text generation function
+   - create a github action to run the test file on commit.
 
 3. Farcaster Integration
 
