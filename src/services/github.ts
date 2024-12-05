@@ -50,14 +50,12 @@ export class GithubService {
     description: string;
     changes: string;
   }> {
-    // Get PR details
     const { data: pr } = await this.octokit.pulls.get({
       owner,
       repo,
       pull_number: pullNumber,
     });
 
-    // Get PR diff
     const { data: diff } = await this.octokit.pulls.get({
       owner,
       repo,
