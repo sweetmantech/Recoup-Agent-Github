@@ -26,11 +26,11 @@ export class OpenAIService {
     Changes: ${changes}
     
     Focus on:
-    1. Key changes and their impact
-    2. Technical improvements
-    3. Business value
+    1. Key changes and their impact on the Recoup music platform
+    2. Technical improvements that benefit musicians and rights holders
+    3. Value add for the music industry ecosystem
     
-    Format the response in a clear, tweet-friendly way.`;
+    Format the response in a clear, tweet-friendly way that resonates with music professionals.`;
 
     const response = await this.openai.chat.completions.create({
       model: "gpt-4o-mini",
@@ -47,9 +47,10 @@ export class OpenAIService {
     ${summary}
     
     Make it:
-    1. Informative but concise
-    2. Engaging for developers
-    3. Include relevant tech keywords`;
+    1. Informative and relevant to the music industry
+    2. Engaging for musicians, producers, and music business professionals
+    3. Include music tech and music rights management keywords
+    4. Keep the tone professional yet approachable for the music community`;
 
     const response = await this.openai.chat.completions.create({
       model: "gpt-4",
