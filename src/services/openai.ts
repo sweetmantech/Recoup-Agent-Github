@@ -49,8 +49,7 @@ export class OpenAIService {
     Make it:
     1. Informative but concise
     2. Engaging for developers
-    3. Include relevant tech keywords
-    4. End with #OpenSource #DevTools`;
+    3. Include relevant tech keywords`;
 
     const response = await this.openai.chat.completions.create({
       model: "gpt-4",
