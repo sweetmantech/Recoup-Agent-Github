@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@farcaster/hub-nodejs": "^0.12.7",
+    "@neynar/nodejs-sdk": "^2.0.5",
     "@octokit/plugin-rest-endpoint-methods": "^13.2.6",
     "@octokit/rest": "^20.1.1",
     "dotenv": "^16.4.1",

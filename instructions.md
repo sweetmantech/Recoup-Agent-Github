@@ -26,6 +26,7 @@ The Github Agent is a tool that allows you to interact with Github repositories.
    - Setup Farcaster authentication
    - Create service for Farcaster interactions
    - Implement post creation function
+   - update test with calls to execute generated posts on farcaster
 
 4. WOW Protocol Integration
 
