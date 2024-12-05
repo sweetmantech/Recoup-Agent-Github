@@ -3,6 +3,30 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+interface User {
+  login: string;
+  id: number;
+  node_id: string;
+  avatar_url: string;
+  html_url: string;
+}
+
+interface Label {
+  id: number;
+  node_id: string;
+  name: string;
+  color: string;
+  description: string;
+}
+
+interface Milestone {
+  id: number;
+  node_id: string;
+  title: string;
+  description: string;
+  state: string;
+}
+
 type PullRequest = {
   url: string;
   id: number;
@@ -18,13 +42,17 @@ type PullRequest = {
   statuses_url: string;
   number: number;
   state: string;
+  locked: boolean;
   title: string;
+  user: User;
   body: string | null;
+  labels: Label[];
+  milestone: Milestone | null;
   merged_at: string | null;
   created_at: string;
   updated_at: string;
   closed_at: string | null;
-  draft: boolean;
+  draft: boolean | undefined;
 };
 
 export class GithubService {
