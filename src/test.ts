@@ -1,6 +1,6 @@
+import botCast from "./farcaster/botCast.js";
 import { GithubService } from "./services/github.js";
 import { OpenAIService } from "./services/openai.js";
-import { FarcasterService } from "./services/farcaster.js";
 
 async function testIntegration() {
   try {
@@ -8,15 +8,6 @@ async function testIntegration() {
     console.log("Initializing services...");
     const githubService = new GithubService();
     const openaiService = new OpenAIService();
-    const farcasterService = new FarcasterService();
-
-    // Test Farcaster connection
-    console.log("\nTesting Farcaster connection...");
-    const isConnected = await farcasterService.verifyConnection();
-    if (!isConnected) {
-      throw new Error("Failed to connect to Farcaster");
-    }
-    console.log("✅ Farcaster connection verified");
 
     // Test GitHub and OpenAI
     const owner = "recoupable";
@@ -52,6 +43,11 @@ async function testIntegration() {
       console.log("\nGenerating tweet...");
       const tweet = await openaiService.generateTweetText(summary);
       console.log("Tweet:", tweet);
+
+      // Post to Farcaster
+      console.log("\nPosting to Farcaster...");
+      const postHash = await botCast(tweet);
+      console.log(`✅ Posted to Farcaster with hash: ${postHash}`);
 
       console.log("\n----------------------------------------");
     }
