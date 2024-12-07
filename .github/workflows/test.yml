@@ -24,6 +24,9 @@ jobs:
         run: |
           echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> .env
           echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+          echo "GRPC_ENDPOINT=${{ secrets.GRPC_ENDPOINT }}" >> .env
+          echo "SIGNER_PRIVATE_KEY=${{ secrets.SIGNER_PRIVATE_KEY }}" >> .env
+          echo "APP_FID=${{ secrets.APP_FID }}" >> .env
 
       - name: Run tests
         run: npm test
