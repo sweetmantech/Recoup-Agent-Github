@@ -43,18 +43,28 @@ export class OpenAIService {
   }
 
   async generateTweetText(summary: string): Promise<string> {
-    const prompt = `Convert this PR summary into an engaging tweet (max 280 chars):
+    const systemPrompt = `You are a music industry social media expert. 
+    - Your task is to create engaging tweets about technical updates. 
+    - NEVER use hashtags or the '#' symbol. 
+    - Keep tweets under 200 characters and focus on clear, direct communication.`;
+
+    const prompt = `Convert this PR summary into a very concise tweet (max 200 chars):
     ${summary}
     
     Make it:
     1. Informative and relevant to the music industry
     2. Engaging for musicians, producers, and music business professionals
-    3. Include music tech and music rights management keywords
-    4. Keep the tone professional yet approachable for the music community`;
+    3. Include music tech and music rights management keywords WITHOUT hashtags
+    4. Keep the tone professional yet approachable for the music community
+    5. MUST be under 200 characters total, including emojis
+    6. ABSOLUTELY NO hashtags or '#' symbols allowed`;
 
     const response = await this.openai.chat.completions.create({
-      model: "gpt-4",
-      messages: [{ role: "user", content: prompt }],
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: prompt },
+      ],
       max_tokens: 100,
       temperature: 0.8,
     });
