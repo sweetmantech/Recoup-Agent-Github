@@ -1,5 +1,5 @@
 import { type HubResult, type Message } from "@farcaster/hub-nodejs";
-import farcasterClient from "./client/index.js";
+import farcasterClient from "./client.js";
 import { fromBytes } from "viem";
 
 export const submitMessage = async (message: HubResult<Message>) => {
