@@ -35,8 +35,6 @@ const botCast = async (text: string) => {
     mentionsPositions: [],
     embedsDeprecated: [],
   };
-  console.log("text: ", text);
-
   const castAdd = await makeCastAdd(castAddBody, dataOptions, signer);
   const postHash = await submitMessage(castAdd);
   return postHash;
