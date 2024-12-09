@@ -4,12 +4,10 @@ import { OpenAIService } from "./services/openai.js";
 
 async function testIntegration() {
   try {
-    // Initialize services
     console.log("Initializing services...");
     const githubService = new GithubService();
     const openaiService = new OpenAIService();
 
-    // Test GitHub and OpenAI
     const owner = "recoupable";
     const repo = "Recoup-Chat";
 
@@ -23,14 +21,12 @@ async function testIntegration() {
     for (const pr of mergedPRs) {
       console.log(`\nAnalyzing PR #${pr.number}: ${pr.title}`);
 
-      // Get detailed PR information
       const prDetails = await githubService.getPRDetails(
         owner,
         repo,
         pr.number
       );
 
-      // Generate summary using OpenAI
       console.log("Generating PR summary...");
       const summary = await openaiService.generatePRSummary(
         prDetails.title,
@@ -39,12 +35,10 @@ async function testIntegration() {
       );
       console.log("\nSummary:", summary);
 
-      // Generate tweet
       console.log("\nGenerating tweet...");
       const tweet = await openaiService.generateTweetText(summary);
       console.log("Tweet:", tweet);
 
-      // Post to Farcaster
       console.log("\nPosting to Farcaster...");
       const postHash = await botCast(tweet);
       console.log(`✅ Posted to Farcaster with hash: ${postHash}`);
