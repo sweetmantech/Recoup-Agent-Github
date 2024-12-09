@@ -1,6 +1,5 @@
 import { Octokit } from "@octokit/rest";
 import { OpenAIService } from "./openai.js";
-import { submitMessage } from "./submitMessage.js";
 import botCast from "../farcaster/botCast.js";
 
 export class OrchestratorService {
