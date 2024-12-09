@@ -16,12 +16,15 @@
     "@octokit/plugin-rest-endpoint-methods": "^13.2.6",
     "@octokit/rest": "^20.1.1",
     "dotenv": "^16.4.1",
+    "node-cron": "^3.0.3",
     "openai": "^4.76.0",
     "typescript": "^5.3.3",
-    "viem": "^2.21.54"
+    "viem": "^2.21.54",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@types/node": "^20.17.9",
+    "@types/node-cron": "^3.0.11",
     "ts-node": "^10.9.2"
   }
 }
