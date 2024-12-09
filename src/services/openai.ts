@@ -1,17 +1,14 @@
 import OpenAI from "openai";
-import * as dotenv from "dotenv";
-
-dotenv.config();
 
 export class OpenAIService {
   private openai: OpenAI;
 
-  constructor() {
-    if (!process.env.OPENAI_API_KEY) {
+  constructor(apiKey: string) {
+    if (!apiKey) {
       throw new Error("OPENAI_API_KEY is required");
     }
     this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: apiKey,
     });
   }
 

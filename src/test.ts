@@ -2,35 +2,34 @@ import botCast from "./farcaster/botCast.js";
 import { GithubService } from "./services/github.js";
 import { OpenAIService } from "./services/openai.js";
 
+const GITHUB_OWNER = "recoupable";
+const GITHUB_REPO = "Recoup-Chat";
+
 async function testIntegration() {
   try {
-    // Initialize services
     console.log("Initializing services...");
     const githubService = new GithubService();
-    const openaiService = new OpenAIService();
-
-    // Test GitHub and OpenAI
-    const owner = "recoupable";
-    const repo = "Recoup-Chat";
+    const openaiService = new OpenAIService(process.env.OPENAI_API_KEY!);
 
     console.log(
-      `\nFetching merged PRs from last 24 hours for ${owner}/${repo}...`
+      `\nFetching merged PRs from last 24 hours for ${GITHUB_OWNER}/${GITHUB_REPO}...`
     );
 
-    const mergedPRs = await githubService.getMergedPullRequests(owner, repo);
+    const mergedPRs = await githubService.getMergedPullRequests(
+      GITHUB_OWNER,
+      GITHUB_REPO
+    );
     console.log(`Found ${mergedPRs.length} merged PRs in the last 24 hours:`);
 
     for (const pr of mergedPRs) {
       console.log(`\nAnalyzing PR #${pr.number}: ${pr.title}`);
 
-      // Get detailed PR information
       const prDetails = await githubService.getPRDetails(
-        owner,
-        repo,
+        GITHUB_OWNER,
+        GITHUB_REPO,
         pr.number
       );
 
-      // Generate summary using OpenAI
       console.log("Generating PR summary...");
       const summary = await openaiService.generatePRSummary(
         prDetails.title,
@@ -39,12 +38,10 @@ async function testIntegration() {
       );
       console.log("\nSummary:", summary);
 
-      // Generate tweet
       console.log("\nGenerating tweet...");
       const tweet = await openaiService.generateTweetText(summary);
       console.log("Tweet:", tweet);
 
-      // Post to Farcaster
       console.log("\nPosting to Farcaster...");
       const postHash = await botCast(tweet);
       console.log(`✅ Posted to Farcaster with hash: ${postHash}`);

@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import "./scheduler";
+import "./scheduler.js";
 
 process.on("uncaughtException", (error) => {
   console.error("Uncaught Exception:", error);
