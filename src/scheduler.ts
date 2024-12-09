@@ -1,6 +1,5 @@
 import cron from "node-cron";
 import { OrchestratorService } from "./services/orchestrator";
-import { logger } from "./utils/logger";
 
 // Validate required environment variables
 const requiredEnvVars = [
@@ -26,18 +25,18 @@ const orchestrator = new OrchestratorService(
 
 // Schedule PR processing every hour
 cron.schedule("0 * * * *", async () => {
-  logger.info("Starting scheduled PR processing");
+  console.log("Starting scheduled PR processing");
   try {
     await orchestrator.processNewPRs();
-    logger.info("Completed scheduled PR processing");
+    console.log("Completed scheduled PR processing");
   } catch (error) {
-    logger.error("Failed to process PRs:", error);
+    console.error("Failed to process PRs:", error);
   }
 });
 
 // Initial run on startup
-logger.info("Starting initial PR processing");
+console.log("Starting initial PR processing");
 orchestrator
   .processNewPRs()
-  .then(() => logger.info("Completed initial PR processing"))
-  .catch((error) => logger.error("Failed initial PR processing:", error));
+  .then(() => console.log("Completed initial PR processing"))
+  .catch((error) => console.error("Failed initial PR processing:", error));
