@@ -1,12 +1,7 @@
 import cron from "node-cron";
 import { OrchestratorService } from "./services/orchestrator.js";
 
-const requiredEnvVars = [
-  "GITHUB_TOKEN",
-  "OPENAI_API_KEY",
-  "GITHUB_OWNER",
-  "GITHUB_REPO",
-];
+const requiredEnvVars = ["GITHUB_TOKEN", "OPENAI_API_KEY"];
 
 for (const envVar of requiredEnvVars) {
   if (!process.env[envVar]) {
@@ -14,11 +9,14 @@ for (const envVar of requiredEnvVars) {
   }
 }
 
+const GITHUB_OWNER = "recoupable";
+const GITHUB_REPO = "Recoup-Chat";
+
 const orchestrator = new OrchestratorService(
   process.env.GITHUB_TOKEN!,
   process.env.OPENAI_API_KEY!,
-  process.env.GITHUB_OWNER!,
-  process.env.GITHUB_REPO!
+  GITHUB_OWNER,
+  GITHUB_REPO
 );
 
 cron.schedule("0 21 * * 1-5", async () => {
