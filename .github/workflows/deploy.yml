@@ -47,14 +47,9 @@ jobs:
             echo "Git status:"
             git status
 
-            export PATH="/root/.nvm/versions/node/v20.18.0/bin:/root/.bun/bin:$PATH"
-
             # Ensure correct Node.js version
             source ~/.nvm/nvm.sh
             nvm use 20
-
-            # Install dependencies
-            bun install
 
             # Start using PM2
             pm2 restart ecosystem.config.cjs --update-env
