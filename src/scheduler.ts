@@ -1,7 +1,6 @@
 import cron from "node-cron";
 import { OrchestratorService } from "./services/orchestrator";
 
-// Validate required environment variables
 const requiredEnvVars = [
   "GITHUB_TOKEN",
   "OPENAI_API_KEY",
@@ -15,7 +14,6 @@ for (const envVar of requiredEnvVars) {
   }
 }
 
-// Initialize orchestrator
 const orchestrator = new OrchestratorService(
   process.env.GITHUB_TOKEN!,
   process.env.OPENAI_API_KEY!,
@@ -23,7 +21,6 @@ const orchestrator = new OrchestratorService(
   process.env.GITHUB_REPO!
 );
 
-// Schedule PR processing at 5PM ET (21:00 UTC) Monday-Friday
 cron.schedule("0 21 * * 1-5", async () => {
   console.log("Starting scheduled PR processing");
   try {
@@ -34,7 +31,6 @@ cron.schedule("0 21 * * 1-5", async () => {
   }
 });
 
-// Initial run on startup
 console.log("Starting initial PR processing");
 orchestrator
   .processNewPRs()

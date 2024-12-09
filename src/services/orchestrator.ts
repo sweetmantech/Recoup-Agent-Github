@@ -23,29 +23,20 @@ export class OrchestratorService {
   async processNewPRs(): Promise<void> {
     try {
       console.log("Starting PR processing");
-
-      // Get merged PRs from last 24 hours
       const mergedPRs = await this.getMergedPRs();
       console.log(`Found ${mergedPRs.length} merged PRs`);
 
       for (const pr of mergedPRs) {
         try {
-          // Generate summary
           const summary = await this.openAIService.generatePRSummary(
             pr.body || "",
             pr.title
           );
-
-          // Generate tweet text
           const tweet = await this.openAIService.generateTweetText(summary);
-
-          // Post to Farcaster
           await submitMessage(tweet);
-
           console.log(`Successfully processed PR #${pr.number}`);
         } catch (error) {
           console.error(`Error processing PR #${pr.number}:`, error);
-          // Continue with next PR even if one fails
           continue;
         }
       }
