@@ -22,17 +22,16 @@ The Github Agent is a tool that allows you to interact with Github repositories.
 
 3. Farcaster Integration
 
-   - Install Farcaster SDK/gRPC dependencies
-   - Setup Farcaster authentication
-   - Create service for Farcaster interactions
-   - Implement post creation function
+   - ✅ Install Farcaster SDK/gRPC dependencies
+   - ✅ Setup Farcaster authentication
+   - ✅ Create service for Farcaster interactions
+   - ✅ Implement post creation function
 
-4. WOW Protocol Integration
+4. Deployment
 
-   - Install Base/Stack SDK
-   - Setup WOW protocol contract interactions
-   - Implement token creation function
-   - Add token sale configuration
+   - Setup Github Actions workflow
+   - Configure Digital Ocean deployment
+   - Add environment variable management
 
 5. Automation & Scheduling
 
@@ -41,14 +40,17 @@ The Github Agent is a tool that allows you to interact with Github repositories.
    - Add error handling and retries
    - Setup logging and monitoring
 
-6. Deployment
+6. WOW Protocol Integration
 
-   - Create Dockerfile
-   - Setup Github Actions workflow
-   - Configure Digital Ocean deployment
-   - Add environment variable management
+   - Install viem
+   - Create ABI files for wow factory
+   - Setup WOW protocol contract interactions
+   - Implement wowFactory token deploy function
+   - Add simple lib to retrieve token sale configuration
+   - Respond to farcaster post with link to the created token on wow
 
 7. Documentation
+
    - Create comprehensive README
    - Add setup instructions
    - Document environment variables
