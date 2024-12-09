@@ -27,13 +27,13 @@ jobs:
           script: |
             echo "Connected to Droplet"
             # Create app directory if it doesn't exist
-            mkdir -p ~/recoup-agent
-            cd ~/recoup-agent
+            mkdir -p ~/recoup-github-agent
+            cd ~/recoup-github-agent
 
             # Initialize git repository if it doesn't exist
             if [ ! -d .git ]; then
               git init
-              git remote add origin https://github.com/recoupable/Recoup-Agent.git
+              git remote add origin https://github.com/sweetmantech/Recoup-Agent-Github.git
             fi
 
             # Fetch latest code and handle local changes
