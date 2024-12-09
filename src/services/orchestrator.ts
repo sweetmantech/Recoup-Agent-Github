@@ -1,6 +1,6 @@
 import { Octokit } from "@octokit/rest";
-import { OpenAIService } from "./openai";
-import { submitMessage } from "./submitMessage";
+import { OpenAIService } from "./openai.js";
+import { submitMessage } from "./submitMessage.js";
 
 export class OrchestratorService {
   private octokit: Octokit;

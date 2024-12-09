@@ -1,5 +1,5 @@
 import cron from "node-cron";
-import { OrchestratorService } from "./services/orchestrator";
+import { OrchestratorService } from "./services/orchestrator.js";
 
 const requiredEnvVars = [
   "GITHUB_TOKEN",
