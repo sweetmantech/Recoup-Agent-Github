@@ -23,8 +23,8 @@ const orchestrator = new OrchestratorService(
   process.env.GITHUB_REPO!
 );
 
-// Schedule PR processing every hour
-cron.schedule("0 * * * *", async () => {
+// Schedule PR processing at 5PM ET (21:00 UTC) Monday-Friday
+cron.schedule("0 21 * * 1-5", async () => {
   console.log("Starting scheduled PR processing");
   try {
     await orchestrator.processNewPRs();
