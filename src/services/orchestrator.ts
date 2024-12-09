@@ -1,6 +1,7 @@
 import { Octokit } from "@octokit/rest";
 import { OpenAIService } from "./openai.js";
 import { submitMessage } from "./submitMessage.js";
+import botCast from "../farcaster/botCast.js";
 
 export class OrchestratorService {
   private octokit: Octokit;
@@ -29,11 +30,12 @@ export class OrchestratorService {
       for (const pr of mergedPRs) {
         try {
           const summary = await this.openAIService.generatePRSummary(
+            pr.title,
             pr.body || "",
-            pr.title
+            pr.merged_at || ""
           );
           const tweet = await this.openAIService.generateTweetText(summary);
-          await submitMessage(tweet);
+          await botCast(tweet);
           console.log(`Successfully processed PR #${pr.number}`);
         } catch (error) {
           console.error(`Error processing PR #${pr.number}:`, error);
