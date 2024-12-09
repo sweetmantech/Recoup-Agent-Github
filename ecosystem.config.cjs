@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "recoup-github-agent",
       script: "npm",
-      args: "test",
+      args: "start",
       cron_restart: "0 */12 * * *",
       watch: false,
       autorestart: true,
